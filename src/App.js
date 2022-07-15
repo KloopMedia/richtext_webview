@@ -20,9 +20,7 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <div dangerouslySetInnerHTML={{ __html: text }} />
-    </div>
+    <div dangerouslySetInnerHTML={{ __html: text }} />
   );
 }
 
