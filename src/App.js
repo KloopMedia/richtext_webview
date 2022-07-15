@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Buffer } from 'buffer';
 
 function App() {
-  const [text, setText] = useState('<p>atai</p>');
+  const [text, setText] = useState('');
 
 
   useEffect(() => {
