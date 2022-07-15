@@ -1,23 +1,42 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
+import { Editor } from "@tinymce/tinymce-react";
+import {Buffer} from 'buffer';
 import './App.css';
 
 function App() {
+  const [text, setText] = useState('<p>atai</p>');
+
+
+  useEffect(() => {
+    window.addEventListener('flutter_rich_text_event', (e) => {
+      console.log('RICH TEXT', e.detail);
+      const decoded = Buffer.from(e.detail, 'base64').toString();
+      setText(decoded);
+    });
+
+    return () => {
+      window.removeEventListener('flutter_rich_text_event', () => { });
+    };
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Editor
+        id={"ViewerTinyMCE"}
+        value={text}
+        inline={false}
+        disabled={true}
+        tinymceScriptSrc={process.env.PUBLIC_URL + '/tinymce/tinymce.min.js'}
+        init={{
+          readonly: true,
+          plugins: 'autoresize',
+          toolbar: false,
+          resize: false,
+          menubar: false,
+          image_advtab: true,
+          importcss_append: true,
+        }}
+      />
     </div>
   );
 }
