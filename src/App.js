@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Editor } from "@tinymce/tinymce-react";
 import { Buffer } from 'buffer';
-import './App.css';
 
 function App() {
   const [text, setText] = useState('<p>atai</p>');
