@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Editor } from "@tinymce/tinymce-react";
-import {Buffer} from 'buffer';
+import { Buffer } from 'buffer';
 import './App.css';
 
 function App() {
@@ -21,22 +21,7 @@ function App() {
 
   return (
     <div>
-      <Editor
-        id={"ViewerTinyMCE"}
-        value={text}
-        inline={false}
-        disabled={true}
-        tinymceScriptSrc={process.env.PUBLIC_URL + '/tinymce/tinymce.min.js'}
-        init={{
-          readonly: true,
-          plugins: 'autoresize',
-          toolbar: false,
-          resize: false,
-          menubar: false,
-          image_advtab: true,
-          importcss_append: true,
-        }}
-      />
+      <div dangerouslySetInnerHTML={{ __html: text }} />
     </div>
   );
 }
